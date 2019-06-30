@@ -1,0 +1,38 @@
+﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationTypeViewModel
+
+@if (Model != null && Model.AccomodationTypes != null && Model.AccomodationTypes.Count() > 0)
+{
+    <div class="table-responsive-sm">
+        <table class="table table-hover table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var accomodationType in Model.AccomodationTypes.Select((x, i) => new { Data = x, Index = i + 1 }))
+                {
+
+                    <tr>
+                        <td>@accomodationType.Index </td>
+                        <td>@accomodationType.Data.Name</td>
+                        <td>@accomodationType.Data.Description</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No record(s) found.
+    </div>
+}

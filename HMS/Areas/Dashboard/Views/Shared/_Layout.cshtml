@@ -12,6 +12,8 @@
     <!-- Custom styles for this template -->
     <link href="~/Areas/Dashboard/Content/css/simple-sidebar.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet" />
+    
+    <script src="~/Areas/Dashboard/Content/vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -19,7 +21,7 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading"><i class="fas fa-hotel mr-1"></i> HMS</div>
             <div class="list-group list-group-flush">
-                <a href="@Url.Action("AccomodationType","Accomodations")" class="list-group-item list-group-item-action bg-light">
+                <a href="@Url.Action("Index","AccomodationTypes")" class="list-group-item list-group-item-action bg-light">
                     <i class="fa fa-building mr-1" aria-hidden="true"></i>  Accomodation Types
                 </a>
                 <a href="@Url.Action("Index","Roles")" class="list-group-item list-group-item-action bg-light">
@@ -61,8 +63,7 @@
         @Html.AntiForgeryToken()
     }
     <!-- /#wrapper -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="~/Areas/Dashboard/Content/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->    
     <script src="~/Areas/Dashboard/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Menu Toggle Script -->
     <script>
