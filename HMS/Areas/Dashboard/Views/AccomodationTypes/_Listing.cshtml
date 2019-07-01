@@ -15,14 +15,13 @@
             <tbody>
                 @foreach (var accomodationType in Model.AccomodationTypes.Select((x, i) => new { Data = x, Index = i + 1 }))
                 {
-
                     <tr>
                         <td>@accomodationType.Index </td>
                         <td>@accomodationType.Data.Name</td>
                         <td>@accomodationType.Data.Description</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit m-1"></i>Edit</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt m-1"></i> Delete</button>
                         </td>
                     </tr>
                 }
@@ -32,7 +31,7 @@
 }
 else
 {
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning text-center" role="alert">
         No record(s) found.
     </div>
 }
