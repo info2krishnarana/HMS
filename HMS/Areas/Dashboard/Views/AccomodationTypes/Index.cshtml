@@ -16,7 +16,7 @@
            <div class="input-group-append">
                <button type="button" class="btn btn-outline-primary"><i class="fas fa-search mr-1"></i> Search</button>
                <button type="button" class="btn btn-outline-secondary"><i class="fas fa-redo-alt mr-1"></i> Reset</button>
-               <button id="createButton" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#actionModel"><i class="fas fa-plus-square mr-1"></i>Create</button>
+               <button data-href='@Url.Action("Action","AccomodationTypes")' type="button" class="data-btn btn btn-outline-success" data-toggle="modal" data-target="#actionModel"><i class="fas fa-plus-square mr-1"></i>Create</button>
            </div>
        </div>
     </div>
@@ -34,10 +34,10 @@
 </div>
 
 <script>
-    $('#createButton').click(function () {
+    $('.data-btn').click(function () {
         $.ajax({
-            url: '@Url.Action("Action","AccomodationTypes")',
-        }).done(function(response) {
+            url: $(this).attr("data-href"),
+        }).done(function (response) {
             $('#actionModel .modal-dialog').html(response);
         });
     });
