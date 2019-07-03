@@ -16,6 +16,11 @@ namespace HMS.Services
             return context.AccomodationTypes.ToList();
         }
 
+        public AccomodationType GetAccomodationTypeById(int id)
+        {
+            return context.AccomodationTypes.Find(id);
+        }
+
         public bool SaveAccomodationType(AccomodationType accomodationType)
         {
             context.AccomodationTypes.Add(accomodationType);

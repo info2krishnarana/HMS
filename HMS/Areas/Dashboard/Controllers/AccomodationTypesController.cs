@@ -27,9 +27,16 @@ namespace HMS.Areas.Dashboard.Controllers
         }
 
         [HttpGet]
-        public ActionResult Action(int? ID)
+        public ActionResult Action(int? id)
         {
             AccomodationTypeActionViewModel model = new AccomodationTypeActionViewModel();
+            if (id.HasValue)
+            {
+                var accomodationType = accomodationTypeService.GetAccomodationTypeById(id.Value);
+                model.ID = accomodationType.ID;
+                model.Name = accomodationType.Name;
+                model.Description = accomodationType.Description;
+            }
             return PartialView("_Action", model);
         }
 
