@@ -17,6 +17,18 @@ namespace HMS.Services
             return context.AccomodationTypes.ToList();
         }
 
+        public IEnumerable<AccomodationType> SearchccomodationTypes(string searchTerm)
+        {
+            var accomodationTypes = context.AccomodationTypes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                accomodationTypes = accomodationTypes.Where(a => a.Name.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            return accomodationTypes.ToList();
+        }
+
         public AccomodationType GetAccomodationTypeById(int id)
         {
             return context.AccomodationTypes.Find(id);

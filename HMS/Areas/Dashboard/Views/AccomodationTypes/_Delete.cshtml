@@ -34,7 +34,8 @@
             data: $('#actionForm').serialize(),
         }).done(function (response) {
             if (response.Success) {
-                location.reload();
+                //location.reload();
+                window.location.href = '@Url.Action("Index","AccomodationTypes")';
             }
             else {
                 //$('#erroDiv').html(response.Message);

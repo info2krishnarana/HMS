@@ -1,4 +1,5 @@
-﻿
+﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationTypeViewModel
+
 @{
     ViewBag.Title = "Index";
 }
@@ -11,20 +12,22 @@
 </div>
 <div class="row mb-3">
     <div class="col col-lg-12">
-       <div class="input-group">
-           <input type="text" class="form-control" placeholder="Search..." />
-           <div class="input-group-append">
-               <button type="button" class="btn btn-outline-primary"><i class="fas fa-search mr-1"></i> Search</button>
-               <button type="button" class="btn btn-outline-secondary"><i class="fas fa-redo-alt mr-1"></i> Reset</button>
-               <button data-href='@Url.Action("Action","AccomodationTypes")' type="button" class="data-btn btn btn-outline-success" data-toggle="modal" data-target="#actionModel"><i class="fas fa-plus-square mr-1"></i>Create</button>
-           </div>
-       </div>
+        <form>
+            <div class="input-group">
+                <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search..." required />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search mr-1"></i> Search</button>
+                    <a class="btn btn-outline-secondary" href='@Url.Action("Index", "AccomodationTypes")'><i class="fas fa-redo-alt mr-1"></i> Reset</a>
+                    <button data-href='@Url.Action("Action", "AccomodationTypes")' type="button" class="data-btn btn btn-outline-success" data-toggle="modal" data-target="#actionModel"><i class="fas fa-plus-square mr-1"></i>Create</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
 <div class="row">
     <div class="col col-lg-12">
-        @{ Html.RenderAction("Listing");}
+        @{Html.RenderPartial("_Listing", Model);}
     </div>
 </div>
 
@@ -36,9 +39,9 @@
 <script>
     $('.data-btn').click(function () {
         $.ajax({
-            url: $(this).attr("data-href"),
+                url: $(this).attr("data-href"),
         }).done(function (response) {
             $('#actionModel .modal-dialog').html(response);
-        });
-    });
+                });
+            });
 </script>
