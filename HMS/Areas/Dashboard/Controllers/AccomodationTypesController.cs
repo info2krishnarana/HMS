@@ -43,20 +43,69 @@ namespace HMS.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult Action(AccomodationTypeActionViewModel model)
         {
+            var result = false;
             JsonResult jsonResult = new JsonResult();
 
             AccomodationType accomodationType = new AccomodationType();
-            accomodationType.Name = model.Name;
-            accomodationType.Description = model.Description;
 
-            var result = accomodationTypeService.SaveAccomodationType(accomodationType);
+            if (model.ID > 0)
+            {
+                accomodationType = accomodationTypeService.GetAccomodationTypeById(model.ID);
+
+                accomodationType.Name = model.Name;
+                accomodationType.Description = model.Description;
+
+                result = accomodationTypeService.UpdateAccomodationType(accomodationType);
+            }
+            else
+            {
+                accomodationType.Name = model.Name;
+                accomodationType.Description = model.Description;
+
+                result = accomodationTypeService.SaveAccomodationType(accomodationType);
+            }
             if (result)
             {
                 jsonResult.Data = new { Success = true };
             }
             else
             {
-                jsonResult.Data = new { Success = false, Message = "Enable to add Accomodation Tpype" };
+                jsonResult.Data = new { Success = false, Message = "Enable to perform action on Accomodation Tpype" };
+            }
+            return jsonResult;
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            AccomodationTypeActionViewModel model = new AccomodationTypeActionViewModel();
+
+            var accomodationType = accomodationTypeService.GetAccomodationTypeById(id);
+
+            model.ID = accomodationType.ID;
+
+            return PartialView("_Delete", model);
+        }
+
+        [HttpPost]
+        public JsonResult Delete(AccomodationTypeActionViewModel model)
+        {
+            var result = false;
+            JsonResult jsonResult = new JsonResult();
+
+            AccomodationType accomodationType = new AccomodationType();
+
+            accomodationType = accomodationTypeService.GetAccomodationTypeById(model.ID);
+
+            result = accomodationTypeService.DeleteAccomodationType(accomodationType);
+
+            if (result)
+            {
+                jsonResult.Data = new { Success = true };
+            }
+            else
+            {
+                jsonResult.Data = new { Success = false, Message = "Enable to perform action on Accomodation Tpype" };
             }
             return jsonResult;
         }

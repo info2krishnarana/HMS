@@ -5,14 +5,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
-                @if (Model.ID > 0)
-                {
-                    <span>Edit Accomodation Type</span>
-                }
-                else
-                {
-                    <span>Create Accomodation Type</span>
-                }
+                    <span>Delete Accomodation Type</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -21,21 +14,13 @@
         <div class="modal-body">
             <form id="actionForm">
                 <input type="hidden" name="id" value="@Model.ID" />
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="Name" class="form-control" placeholder="Enter Accomodation Type Name" value="@Model.Name" />
-                </div>
-                <div class="form-group">
-                    <label>Desctiption</label>
-                    <textarea name="Description" class="form-control" placeholder="Enter Accomodation Type Description">@Model.Description</textarea>
+                <div class="alert alert-danger" role="alert">
+                    Are you sure want to delete this Accomodation Type ?
                 </div>
             </form>
         </div>
-        <div class="erroDiv">
-
-        </div>
         <div class="modal-footer">
-            <button id="actionButton" type="button" class="btn btn-outline-primary"><i class="fas fa-save mr-1"></i> Save</button>
+            <button id="actionButton" type="button" class="btn btn-outline-danger"><i class="fas fa-trash mr-1"></i> Delete</button>
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-window-close mr-1"></i> Close</button>
         </div>
     </div>
@@ -44,7 +29,7 @@
 <script>
     $('#actionButton').click(function () {
         $.ajax({
-            url: '@Url.Action("Action","AccomodationTypes")',
+            url: '@Url.Action("Delete","AccomodationTypes")',
             type: 'post',
             data: $('#actionForm').serialize(),
         }).done(function (response) {
@@ -52,7 +37,7 @@
                 location.reload();
             }
             else {
-                $('#erroDiv').html(response.Message);
+                //$('#erroDiv').html(response.Message);
             }
         });
     });
