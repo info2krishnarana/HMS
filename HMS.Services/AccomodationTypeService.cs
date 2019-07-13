@@ -12,12 +12,13 @@ namespace HMS.Services
     public class AccomodationTypeService
     {
         HMSContext context = new HMSContext();
+
         public IEnumerable<AccomodationType> GetAllAccomodationTypes()
         {
             return context.AccomodationTypes.ToList();
         }
 
-        public IEnumerable<AccomodationType> SearchccomodationTypes(string searchTerm)
+        public IEnumerable<AccomodationType> SearchAccomodationTypes(string searchTerm)
         {
             var accomodationTypes = context.AccomodationTypes.AsQueryable();
 

@@ -18,7 +18,7 @@ namespace HMS.Areas.Dashboard.Controllers
             AccomodationTypeViewModel model = new AccomodationTypeViewModel();
 
             model.SearchTerm = searchTerm;
-            model.AccomodationTypes = accomodationTypeService.SearchccomodationTypes(searchTerm);
+            model.AccomodationTypes = accomodationTypeService.SearchAccomodationTypes(searchTerm);
             // return PartialView("_Listing", model);
 
             return View(model);
